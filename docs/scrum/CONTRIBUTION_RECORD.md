@@ -22,10 +22,10 @@ Per the Software Engineering Project Guidelines, each team member certifies that
 
 | Member Name | Student Registration No. | Assigned Primary Responsibilities | Contribution Percentage | Signature / Confirmation Date |
 | :--- | :--- | :--- | :--- | :--- |
-| **Member 1 (Frontend)** | *[Reg No. 1]* | UI/UX, React Views, Client State, API Integration | 25% | *Confirmed (2026-10-16)* |
-| **Member 2 (Backend)** | *[Reg No. 2]* | Express Server, JWT Auth, Input Validation, APIs | 25% | *Confirmed (2026-10-16)* |
-| **Member 3 (Database)** | *[Reg No. 3]* | PostgreSQL Migrations, Schema, Matching Engine | 25% | *Confirmed (2026-10-16)* |
-| **Member 4 (QA/Schedule)**| *[Reg No. 4]* | Scheduling Logic, Resources, Testing, Traceability| 25% | *Confirmed (2026-10-16)* |
+| **Member 1 (Frontend)** | 20243322 | UI/UX, React Views, Client State, API Integration | 25% | *Confirmed (2026-10-16)* |
+| **Member 2 (Backend)** | 20243321 | Express Server, JWT Auth, Input Validation, APIs | 25% | *Confirmed (2026-10-16)* |
+| **Member 3 (Database)** | 20243315 | PostgreSQL Migrations, Schema, Matching Engine | 25% | *Confirmed (2026-10-16)* |
+| **Member 4 (QA/Schedule)**| 20243297 | Scheduling Logic, Resources, Testing, Traceability| 25% | *Confirmed (2026-10-16)* |
 
 ---
 
