@@ -7,14 +7,14 @@
 
 ## 1. Cover Page
 - **Project Title:** StudySync — Peer Matching & Collaborative Study Group Platform
-- **Group Number:** Group [XX]
+- **Group Number:** Group 15
 - **Team Members & Registration Numbers:**
-  1. [Member 1 Name] — Reg No: [XXXXXXX] — Frontend & UI/UX
-  2. [Member 2 Name] — Reg No: [XXXXXXX] — Backend & Authentication
-  3. [Member 3 Name] — Reg No: [XXXXXXX] — Database & Matching Engine
-  4. [Member 4 Name] — Reg No: [XXXXXXX] — Scheduling, Resources & QA
-- **Course Name & Section:** Software Engineering (Section [X])
-- **Supervisor / Instructor Name:** Prof. [Instructor Name]
+  1. Yadavalli Sumanth Chowdary — Reg No: 20243322 — Frontend Engineering & UI/UX Design
+  2. Vuppalapanchu Karthikeya Lalith — Reg No: 20243321 — Backend API & Authentication Services
+  3. Vem Nagarjuna Reddy — Reg No: 20243315 — Relational Database & Matching Algorithm
+  4. Tummala Ashrith Reddy — Reg No: 20243297 — Scheduling Systems, QA & Documentation Lead
+- **Course Name & Section:** Software Engineering (Section F)
+- **Supervisor / Instructor Name:** Dr. Komal Gupta
 
 ---
 

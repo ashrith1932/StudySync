@@ -93,12 +93,12 @@ StudySync/
 
 ## 4. Four-Member Team Responsibility Matrix
 
-| Member | Primary Role | Core Modules & Deliverables | Planned Effort |
-| :--- | :--- | :--- | :--- |
-| **Member 1** | **Frontend & UI/UX** | React UI, Tailwind design system, Client-side routing, API integration, Form validation, Responsive layouts, Vitest component tests. | 25% |
-| **Member 2** | **Backend & Authentication** | Express architecture, JWT auth, RBAC middleware, bcrypt password hashing, Zod validation, Error handling, Supertest API tests. | 25% |
-| **Member 3** | **Database & Matching** | PostgreSQL 3NF schema, SQL migrations, Seed data, Data Dictionary, ER modeling, Heuristic peer matching algorithm. | 25% |
-| **Member 4** | **Scheduling, Resources & QA** | Study session scheduling, Overlap detection heuristics, Attendance RSVP & check-in, Shared resources, Test cases, Traceability, Demo lead. | 25% |
+| Member | Student Name & Reg. No. | Primary Role | Core Modules & Deliverables | Planned Effort |
+| :--- | :--- | :--- | :--- | :--- |
+| **Member 1** | **Yadavalli Sumanth Chowdary** (20243322) | **Frontend & UI/UX** | React UI, Tailwind design system, Client-side routing, API integration, Form validation, Responsive layouts, Vitest component tests. | 25% |
+| **Member 2** | **Vuppalapanchu Karthikeya Lalith** (20243321) | **Backend & Authentication** | Express architecture, JWT auth, RBAC middleware, bcrypt password hashing, Zod validation, Error handling, Supertest API tests. | 25% |
+| **Member 3** | **Vem Nagarjuna Reddy** (20243315) | **Database & Matching** | PostgreSQL 3NF schema, SQL migrations, Seed data, Data Dictionary, ER modeling, Heuristic peer matching algorithm. | 25% |
+| **Member 4** | **Tummala Ashrith Reddy** (20243297) | **Scheduling, Resources & QA** | Study session scheduling, Overlap detection heuristics, Attendance RSVP & check-in, Shared resources, Test cases, Traceability, Demo lead. | 25% |
 
 ---
 
