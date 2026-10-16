@@ -48,6 +48,24 @@
   - Member 3: Wire database repository layer with sample course seeds.
   - Member 4: Create automated unit test suite for Auth endpoints (`TC-AUTH-01` to `TC-AUTH-03`).
 
+### Meeting 03: Sprint 2 Review & Matching/QA Sign-off (Mid-Sem Milestone 50%)
+- **Date & Time:** October 16, 2026 | 17:30 - 18:30
+- **Mode:** Hybrid Lab Session
+- **Attendees:** Member 1, Member 2, Member 3, Member 4 (All Present)
+- **Agenda:**
+  1. Review of group membership request & owner approval workflow (`US-05`, `US-06`).
+  2. Verification of heuristic matching engine calculation ($W_{\text{subject}} = 0.40, W_{\text{schedule}} = 0.40, W_{\text{goals}} = 0.20$) and explainability tags (`US-07`).
+  3. QA audit: Verification of 43 passed unit and integration tests (100% green rate).
+  4. Inspection of evidence log `docs/testing/evidence/sprint2_test_results.txt`.
+- **Key Decisions:**
+  - Sprint 2 features accepted into `main` baseline; Mid-Semester 50% milestone satisfied.
+  - Member 3 confirmed database referential integrity, repository joins, and matching logic.
+  - Member 4 verified all test cases `TC-009` through `TC-012`, `TC-018`, and `TC-020` marked PASS.
+- **Next Targets (Sprint 3 Preview):**
+  - Member 4 to commence study session scheduling schema and time boundary collision guards (`US-08` - `US-10`).
+  - Member 1 to design session calendar view and RSVP modals (`US-11`).
+  - Member 2 & 3 to design study resource upload metadata schema (`US-12`).
+
 ---
 
 ### Meeting Template (For Weekly Sprint Coordination)

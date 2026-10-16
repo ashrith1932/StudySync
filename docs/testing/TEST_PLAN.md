@@ -33,20 +33,28 @@ The primary goal of testing in StudySync is to ensure functional correctness, da
 - Supertest calls against Express routes connected to a dedicated test PostgreSQL database.
 - Verifies HTTP status codes, standard JSON envelope structure, database transactions, cascading deletes, and token authorization.
 
-### 2.3 System & End-to-End (E2E) Testing
-- Validates the complete user workflow required for the Mid-Semester evaluation:
-  1. Student creates an account.
-  2. Sets up profile and availability.
-  3. Browses public study groups.
-  4. Creates a new study group.
-  5. Second student searches and applies to join.
-  6. Creator approves membership.
+### 2.3 System & Acceptance Testing (UAT)
+- Validates the complete user workflow required for the Mid-Semester evaluation in `tests/system_acceptance.test.js`:
+  1. Student creates an account (Registration & JWT issuance).
+  2. Sets up profile, academic major, and weekly recurring availability slots.
+  3. Creates a new study group and auto-enrolls as owner.
+  4. Second student searches and receives algorithmic recommendation with compatibility score.
+  5. Second student applies to join with an introductory note.
+  6. Creator reviews pending requests with hydrated student profile and approves membership.
+  7. Membership updates live and capacity limits are enforced.
 
-### 2.4 Security & Boundary Testing
+### 2.4 Regression & System Invariant Testing
+- Automated regression suite in `tests/regression.test.js` validating:
+  1. Uniform API response envelopes across success and error handlers.
+  2. Credential confidentiality (zero password hash leakage).
+  3. Query parameter sanitization and injection resistance.
+  4. Course catalogue stability and composite unique key integrity.
+
+### 2.5 Security & Boundary Testing
 - Testing injection strings in search queries.
 - Attempting unauthorized access without JWT token (`401`).
 - Attempting session creation with past timestamp or `endTime <= startTime` (`400`).
-- Attempting to exceed maximum group capacity ($n > \text{maxMembers}$) (`409` or `400`).
+- Attempting to exceed maximum group capacity ($n > \text{maxMembers}$) (`400`).
 
 ---
 

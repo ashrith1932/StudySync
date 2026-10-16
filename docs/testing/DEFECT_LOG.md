@@ -11,8 +11,8 @@
 ## Defect Tracking Register
 
 | Defect ID | Associated TC | Severity | Module | Description & Steps to Reproduce | Identified By | Assigned To | Status | Resolution / Fix Details |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| *BUG-TEMPLATE* | *TC-xxx* | *S2* | *Auth/Group* | *Step 1: ... Step 2: ... Expected: ... Actual: ...* | *Member X* | *Member Y* | *OPEN / RESOLVED* | *Commit SHA or fix description* |
+| **DEF-001** | TC-011 | S3 | Matching Engine | Empty student learning goals resulted in NaN when computing Jaccard coefficient union size. | Member 4 | Member 3 | **RESOLVED** | Added `normA.size === 0 || normB.size === 0` guard returning `{ coefficient: 0, intersection: [] }`. |
+| **DEF-002** | TC-012 | S3 | Recommendations | Missing Bearer token on `/recommendations/groups` threw unhandled error before auth middleware returned envelope. | Member 4 | Member 2 | **RESOLVED** | Wrapped route with `protect` middleware returning standardized 401 Unauthorized JSON envelope. |
 
 ---
 

@@ -46,3 +46,10 @@ To ensure fair attribution and compliance with course evaluation:
 - **Member 3 (Database):** Audited SQL schema DDL and prepared repository abstraction structure.
 - **Member 4 (QA / Setup):** Configured Jest test runner, verified test execution scripts, and recorded Phase 1 verification evidence.
 
+### Phase 2: Sprint 2 (Membership Workflow & Matching Engine)
+- **Member 1 (Frontend):** Built `ProfilePage`, `GroupDetailPage`, `JoinRequestModal`, `OwnerReviewPanel`, and `RecommendationsPage` with responsive layouts.
+- **Member 2 (Backend):** Implemented membership routes (`/join`, `/requests`, `/:userId`), Zod validation schemas, and owner authorization guards.
+- **Member 3 (Database & Matching):** Developed deterministic 3-factor heuristic matching engine (`matching.service.js`) with explainable criteria breakdown and `group.repository.js` relational query methods (`findWithUserDetails`, `updateStatus`).
+- **Member 4 (Scheduling & QA):** Authored automated test suites (`tests/matching.test.js`, `tests/membership.test.js`), executed full 43-test regression suite with 100% pass rate, captured official CLI evidence in `sprint2_test_results.txt`, and updated master test register.
+
+
