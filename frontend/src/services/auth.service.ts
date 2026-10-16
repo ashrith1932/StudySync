@@ -25,4 +25,18 @@ export const authService = {
 
   getMe: () =>
     apiClient.get('/auth/me').then((r) => r.data),
+
+  updateProfile: (data: {
+    bio?: string;
+    major?: string;
+    academicYear?: string;
+    learningGoals?: string[];
+    preferredSubjects?: string[];
+  }) => apiClient.put('/users/profile', data).then((r) => r.data),
+
+  updateAvailability: (availability: Array<{
+    dayOfWeek: string;
+    startTime: string;
+    endTime: string;
+  }>) => apiClient.put('/users/availability', { availability }).then((r) => r.data),
 };
