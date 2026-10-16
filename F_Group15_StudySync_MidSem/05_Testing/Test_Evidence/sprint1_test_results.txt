@@ -1,0 +1,81 @@
+================================================================================
+StudySync — Sprint 1 Test Execution Evidence
+Date: 2026-10-16
+Runner: Jest v29.7.0 (Node.js v24.13.0)
+Member: Member 4 (QA & Scheduling)
+Command: cross-env NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules'
+         jest --runInBand --detectOpenHandles --verbose
+================================================================================
+
+──────────────────────────────────────────────────────────────────────────────
+TEST SUITE 1: tests/auth.test.js
+Test Case Ref: TC-AUTH-01, TC-AUTH-02, TC-AUTH-03
+User Stories:  US-01 (Register), US-02 (Login)
+──────────────────────────────────────────────────────────────────────────────
+
+PASS tests/auth.test.js
+
+  [TC-AUTH-01] POST /api/v1/auth/register
+    √ should register a new user and return a JWT token         (409 ms)  PASS
+    √ should reject duplicate email with 409 Conflict          ( 19 ms)  PASS
+    √ should reject missing email with 422 validation error    ( 10 ms)  PASS
+    √ should reject short password (< 8 chars) with 422        ( 11 ms)  PASS
+
+  [TC-AUTH-02] POST /api/v1/auth/login
+    √ should login with valid credentials and return a JWT     (781 ms)  PASS
+    √ should reject wrong password with 401                    (450 ms)  PASS
+    √ should reject non-existent email with 401                ( 28 ms)  PASS
+
+  [TC-AUTH-03] GET /api/v1/auth/me
+    √ should return authenticated user profile with a valid JWT(336 ms)  PASS
+    √ should reject request without token with 401             (347 ms)  PASS
+    √ should reject request with invalid token with 401        (334 ms)  PASS
+
+──────────────────────────────────────────────────────────────────────────────
+TEST SUITE 2: tests/groups.test.js
+Test Case Ref: TC-GROUP-01, TC-GROUP-02
+User Stories:  US-03 (Create Group), US-04 (Browse Groups)
+──────────────────────────────────────────────────────────────────────────────
+
+PASS tests/groups.test.js
+
+  [TC-GROUP-01] GET /api/v1/groups
+    √ should return a list of study groups                     ( 16 ms)  PASS
+    √ should return subject list from /api/v1/subjects         ( 14 ms)  PASS
+
+  [TC-GROUP-02] POST /api/v1/groups
+    √ should create a study group when authenticated           ( 16 ms)  PASS
+    √ should reject group creation without auth token (401)    ( 11 ms)  PASS
+    √ should reject invalid subjectId with 422                 ( 24 ms)  PASS
+    √ should reject group with missing description (422)       ( 12 ms)  PASS
+    √ should return group detail via GET /api/v1/groups/:id    ( 25 ms)  PASS
+
+──────────────────────────────────────────────────────────────────────────────
+TEST SUITE 3: tests/smoke.test.js
+──────────────────────────────────────────────────────────────────────────────
+
+PASS tests/smoke.test.js
+
+  Environment & Harness Smoke Test
+    √ should assert test runner operational                    (  3 ms)  PASS
+
+================================================================================
+SUMMARY
+================================================================================
+Test Suites : 3 passed, 3 total
+Tests       : 18 passed, 18 total   <-- ALL GREEN ✓
+Snapshots   : 0 total
+Time        : 4.630 s
+================================================================================
+
+Traceability:
+  TC-AUTH-01  → FR-001 (User Registration), NFR-001 (bcrypt hashing)
+  TC-AUTH-02  → FR-002 (User Login/Logout), US-02
+  TC-AUTH-03  → FR-003 (JWT Auth Guard), US-02
+  TC-GROUP-01 → FR-004 (Group Directory Browse), US-04
+  TC-GROUP-02 → FR-005 (Group Creation), US-03
+
+Defects Found: 0
+Defects Open : 0
+Status       : SPRINT 1 ACCEPTANCE CRITERIA MET ✓
+================================================================================
