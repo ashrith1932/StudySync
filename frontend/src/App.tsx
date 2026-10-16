@@ -18,6 +18,9 @@ import LoginPage    from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import GroupListPage from './pages/GroupListPage';
+import GroupDetailPage from './pages/GroupDetailPage';
+import ProfilePage from './pages/ProfilePage';
+import RecommendationsPage from './pages/RecommendationsPage';
 
 export default function App() {
   return (
@@ -35,6 +38,15 @@ export default function App() {
             } />
             <Route path="/groups" element={
               <ProtectedRoute><GroupListPage /></ProtectedRoute>
+            } />
+            <Route path="/groups/:id" element={
+              <ProtectedRoute><GroupDetailPage /></ProtectedRoute>
+            } />
+            <Route path="/recommendations" element={
+              <ProtectedRoute><RecommendationsPage /></ProtectedRoute>
+            } />
+            <Route path="/profile" element={
+              <ProtectedRoute><ProfilePage /></ProtectedRoute>
             } />
           </Route>
 

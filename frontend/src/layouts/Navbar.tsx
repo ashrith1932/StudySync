@@ -4,7 +4,7 @@
  */
 
 import { Link, useNavigate } from 'react-router-dom';
-import { BookOpen, LogOut, Users, LayoutDashboard } from 'lucide-react';
+import { BookOpen, LogOut, Users, LayoutDashboard, Sparkles, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
@@ -33,9 +33,15 @@ export default function Navbar() {
                 <LayoutDashboard size={16} /> Dashboard
               </Link>
               <Link to="/groups" className="flex items-center gap-1 text-sm hover:text-indigo-200 transition-colors">
-                <Users size={16} /> Browse Groups
+                <Users size={16} /> Groups
               </Link>
-              <span className="text-indigo-300 text-sm hidden md:block">
+              <Link to="/recommendations" className="flex items-center gap-1 text-sm hover:text-indigo-200 transition-colors">
+                <Sparkles size={16} className="text-amber-300" /> Matches
+              </Link>
+              <Link to="/profile" className="flex items-center gap-1 text-sm hover:text-indigo-200 transition-colors">
+                <User size={16} /> Profile
+              </Link>
+              <span className="text-indigo-300 text-sm hidden md:block pl-2 border-l border-indigo-500">
                 {user?.fullName}
               </span>
               <button
