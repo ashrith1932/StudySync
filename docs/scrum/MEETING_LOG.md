@@ -28,7 +28,30 @@
 
 ---
 
+### Meeting 02: Environment Verification & Harness Setup (Phase 1)
+- **Date & Time:** October 16, 2026 | 16:00 - 17:00
+- **Mode:** Hybrid Lab Session
+- **Attendees:** Member 1, Member 2, Member 3, Member 4 (All Present)
+- **Agenda:**
+  1. Verification of local Node.js v24+ and npm 11+ environments.
+  2. Installation of root, backend, and frontend dependencies.
+  3. Verification of backend Jest runner and frontend Vitest runner with baseline smoke tests.
+  4. Establishment of Git branching cadence and documentation tracking guidelines.
+- **Key Decisions:**
+  - Automated test outputs will be preserved in `docs/testing/evidence/` for final submission packaging.
+  - Test suites must be kept green at every commit.
+  - Member 2 to commence Express backend auth controllers and validation middleware.
+  - Member 1 to initialize frontend React UI shell and route guards.
+- **Next Targets:**
+  - Member 1: Build React Navbar, Hero, and Login/Register UI.
+  - Member 2: Implement bcrypt hashing, JWT issuance, and registration/login route handlers.
+  - Member 3: Wire database repository layer with sample course seeds.
+  - Member 4: Create automated unit test suite for Auth endpoints (`TC-AUTH-01` to `TC-AUTH-03`).
+
+---
+
 ### Meeting Template (For Weekly Sprint Coordination)
+
 
 ```markdown
 ### Meeting [Number]: [Sprint Title / Objective]

@@ -35,3 +35,14 @@ To ensure fair attribution and compliance with course evaluation:
 2. Commit messages must follow the standard convention: `<type>(<scope>): <short description>`  
    *(e.g., `feat(auth): implement JWT token generation middleware`, `test(matching): add unit tests for schedule compatibility math`)*.
 3. Every pull request must be reviewed and approved by at least one other group member before merging into `develop`.
+
+---
+
+## 4. Phase-by-Phase Contribution Log
+
+### Phase 1: Environment & Scaffolding Verification
+- **Member 1 (Frontend):** Verified Vite React 18 configuration, Tailwind CSS post-processing pipeline, and initialized Vitest test harness with baseline smoke test.
+- **Member 2 (Backend):** Configured Express server structure, root scripts, and verified Node.js v24 environment compatibility.
+- **Member 3 (Database):** Audited SQL schema DDL and prepared repository abstraction structure.
+- **Member 4 (QA / Setup):** Configured Jest test runner, verified test execution scripts, and recorded Phase 1 verification evidence.
+
