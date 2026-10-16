@@ -99,6 +99,30 @@ export const membershipRepository = {
       joined_at: new Date().toISOString(),
     });
   },
+
+  /**
+   * Find memberships joined with user and user_profiles details
+   * Member 3 / Member 2 — Sprint 2
+   */
+  findWithUserDetails(groupId, status = null) {
+    const memberships = this.findByGroup(groupId, status);
+    return memberships.map((m) => {
+      const user = findOne('users', { id: m.user_id });
+      const profile = findOne('user_profiles', { user_id: m.user_id });
+      return {
+        ...m,
+        user: user
+          ? {
+              id: user.id,
+              email: user.email,
+              fullName: user.full_name,
+              major: profile?.major || null,
+              academicYear: profile?.academic_year || null,
+            }
+          : null,
+      };
+    });
+  },
 };
 
 // ── Subject operations ────────────────────────────────────────────────────────
