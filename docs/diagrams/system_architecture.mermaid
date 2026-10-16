@@ -1,0 +1,75 @@
+%% StudySync Three-Tier System Architecture Diagram
+flowchart TD
+    subgraph ClientLayer["Tier 1: Client Layer (Browser SPA)"]
+        SPA["React 18 SPA (Vite Bundler)"]
+        UI_Router["React Router v6"]
+        UI_Context["State Management (AuthContext)"]
+        UI_Axios["HTTP Service Client (Axios)"]
+        UI_Views["Tailwind UI Views (Dashboard, Groups, Sessions, Calendar)"]
+        
+        SPA --> UI_Router
+        UI_Router --> UI_Views
+        UI_Views --> UI_Context
+        UI_Views --> UI_Axios
+    end
+
+    subgraph APILayer["Tier 2: Application / API Layer (Node.js & Express)"]
+        ExpressApp["Express.js Server Application"]
+        RoutePrefix["API Gateway Routing (/api/v1)"]
+        
+        subgraph MiddlewarePipeline["Middleware Pipeline"]
+            CORS["CORS Protection"]
+            JWTAuth["JWT Authentication & RBAC"]
+            ZodVal["Zod Schema Validator"]
+            ErrorHandler["Centralized Error Handler"]
+        end
+
+        subgraph ControllerLayer["Controllers"]
+            C_Auth["AuthController"]
+            C_User["UserController"]
+            C_Group["GroupController"]
+            C_Match["MatchingController"]
+            C_Session["SessionController"]
+            C_Resource["ResourceController"]
+        end
+
+        subgraph ServiceLayer["Domain Services"]
+            S_Auth["AuthService (bcrypt / JWT)"]
+            S_Group["GroupService"]
+            S_Match["MatchingEngineService (Heuristic Formula)"]
+            S_Session["SchedulingService (Overlap Detection)"]
+        end
+
+        subgraph RepositoryLayer["Data Access Repositories"]
+            R_User["UserRepository"]
+            R_Group["GroupRepository"]
+            R_Session["SessionRepository"]
+            R_Resource["ResourceRepository"]
+        end
+
+        ExpressApp --> RoutePrefix
+        RoutePrefix --> MiddlewarePipeline
+        MiddlewarePipeline --> ControllerLayer
+        ControllerLayer --> ServiceLayer
+        ServiceLayer --> RepositoryLayer
+    end
+
+    subgraph DataLayer["Tier 3: Persistence Layer (PostgreSQL 14+)"]
+        PG_Pool["pg Connection Pool (2-10 Conns)"]
+        
+        subgraph Tables["3NF Relational Tables"]
+            T_Users[("users")]
+            T_Profiles[("user_profiles")]
+            T_Subjects[("subjects")]
+            T_Groups[("study_groups")]
+            T_Members[("group_memberships")]
+            T_Sessions[("study_sessions")]
+            T_Attendees[("session_attendees")]
+            T_Resources[("study_resources")]
+        end
+
+        PG_Pool --> Tables
+    end
+
+    UI_Axios -- "JSON REST over HTTPS" --> ExpressApp
+    RepositoryLayer -- "Parameterized SQL" --> PG_Pool

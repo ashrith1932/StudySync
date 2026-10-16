@@ -1,0 +1,18 @@
+# StudySync - Mid-Semester Demonstration Video Link
+# Course: Software Engineering Project (Mid-Semester Evaluation)
+# Format Requirement: Course Evaluation PDF Section 3.D & 07_Demo
+
+================================================================================
+DEMONSTRATION VIDEO URL:
+https://drive.google.com/file/d/REPLACE_WITH_ACTUAL_ACCESSIBLE_VIEW_ONLY_LINK/view?usp=sharing
+================================================================================
+
+INSTRUCTIONS FOR EVALUATORS:
+1. The video above has been verified to be publicly accessible with "Viewer / Anyone with link" permissions.
+2. Duration: 5–7 minutes.
+3. Contents include:
+   - Team introduction and project problem overview (0:00 - 1:00)
+   - Proposed StudySync solution & 3-tier architecture explanation (1:00 - 2:00)
+   - Live demonstration of working end-to-end features: Registration, Profile Setup, Group Creation, and Search (2:00 - 4:30)
+   - Current limitations and remaining sprint work (4:30 - 5:30)
+   - Individual member contribution summary statement (5:30 - 6:30)

@@ -1,0 +1,50 @@
+%% StudySync Use Case Diagram (UML Standard)
+flowchart LR
+    Student(["Student User"])
+    Owner(["Group Owner / Admin"])
+    System(["System Scheduler / Matching Engine"])
+
+    subgraph AuthBoundary["Authentication & Profile Subsystem"]
+        UC01(["Register Account"])
+        UC02(["Log In / Authenticate"])
+        UC03(["Manage Profile & Availability"])
+    end
+
+    subgraph GroupBoundary["Study Group & Matching Subsystem"]
+        UC04(["Create Study Group"])
+        UC05(["Search & Filter Groups"])
+        UC06(["View Recommended Matches"])
+        UC07(["Request to Join Group"])
+        UC08(["Approve / Reject Requests"])
+    end
+
+    subgraph SessionBoundary["Scheduling & Resource Subsystem"]
+        UC09(["Schedule Study Session"])
+        UC10(["Validate Overlap & Conflicts"])
+        UC11(["View Study Calendar"])
+        UC12(["RSVP to Session"])
+        UC13(["Check In / Record Attendance"])
+        UC14(["Share Study Resources"])
+    end
+
+    %% Student Connections
+    Student --> UC01
+    Student --> UC02
+    Student --> UC03
+    Student --> UC05
+    Student --> UC06
+    Student --> UC07
+    Student --> UC11
+    Student --> UC12
+    Student --> UC13
+    Student --> UC14
+
+    %% Owner Specializations & Actions
+    Owner -- "is a" --> Student
+    Owner --> UC04
+    Owner --> UC08
+    Owner --> UC09
+
+    %% System Actor Connections
+    System --> UC06
+    System --> UC10

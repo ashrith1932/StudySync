@@ -1,0 +1,106 @@
+%% StudySync Entity-Relationship Diagram (Crow's Foot Notation)
+erDiagram
+    users ||--o| user_profiles : "has profile"
+    users ||--o{ study_groups : "creates"
+    users ||--o{ group_memberships : "enrolls in"
+    users ||--o{ session_attendees : "attends"
+    users ||--o{ study_resources : "uploads"
+    
+    subjects ||--o{ study_groups : "categorizes"
+    
+    study_groups ||--o{ group_memberships : "contains"
+    study_groups ||--o{ study_sessions : "hosts"
+    study_groups ||--o{ study_resources : "stores"
+    
+    study_sessions ||--o{ session_attendees : "tracks"
+
+    users {
+        UUID id PK
+        VARCHAR email UK
+        VARCHAR password_hash
+        VARCHAR full_name
+        VARCHAR role
+        BOOLEAN is_active
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ updated_at
+    }
+
+    user_profiles {
+        UUID id PK
+        UUID user_id FK,UK
+        TEXT bio
+        VARCHAR major
+        VARCHAR academic_year
+        TEXT_ARRAY learning_goals
+        TEXT_ARRAY preferred_subjects
+        JSONB availability
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ updated_at
+    }
+
+    subjects {
+        UUID id PK
+        VARCHAR code UK
+        VARCHAR name
+        VARCHAR department
+        TIMESTAMPTZ created_at
+    }
+
+    study_groups {
+        UUID id PK
+        VARCHAR name
+        TEXT description
+        UUID subject_id FK
+        UUID creator_id FK
+        INT max_members
+        VARCHAR visibility
+        TEXT_ARRAY tags
+        TIMESTAMPTZ created_at
+        TIMESTAMPTZ updated_at
+    }
+
+    group_memberships {
+        UUID id PK
+        UUID group_id FK
+        UUID user_id FK
+        VARCHAR role
+        VARCHAR status
+        TEXT request_note
+        TIMESTAMPTZ joined_at
+        TIMESTAMPTZ created_at
+    }
+
+    study_sessions {
+        UUID id PK
+        UUID group_id FK
+        VARCHAR title
+        TEXT description
+        TIMESTAMPTZ start_time
+        TIMESTAMPTZ end_time
+        VARCHAR location_type
+        TEXT meeting_link_or_venue
+        UUID created_by_id FK
+        VARCHAR status
+        TIMESTAMPTZ created_at
+    }
+
+    session_attendees {
+        UUID id PK
+        UUID session_id FK
+        UUID user_id FK
+        VARCHAR status
+        TIMESTAMPTZ check_in_time
+        TIMESTAMPTZ created_at
+    }
+
+    study_resources {
+        UUID id PK
+        UUID group_id FK
+        VARCHAR title
+        TEXT description
+        VARCHAR resource_type
+        TEXT resource_uri
+        UUID uploader_id FK
+        BIGINT file_size_bytes
+        TIMESTAMPTZ created_at
+    }

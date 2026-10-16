@@ -1,0 +1,81 @@
+%% Sequence Diagrams for Key Workflows in StudySync
+
+%% =============================================================================
+%% 1. Authentication & Profile Retrieval Workflow
+%% =============================================================================
+sequenceDiagram
+    autonumber
+    actor Student as Student (Browser)
+    participant Client as React Client (Vite)
+    participant API as Express Router & Middleware
+    participant AuthCtrl as AuthController
+    participant AuthSvc as AuthService
+    participant UserRepo as UserRepository
+    participant DB as PostgreSQL DB
+
+    Student->>Client: Enters credentials & clicks "Log In"
+    Client->>API: POST /api/v1/auth/login {email, password}
+    API->>AuthCtrl: handleLogin(req, res)
+    AuthCtrl->>AuthSvc: authenticate(email, password)
+    AuthSvc->>UserRepo: findByEmail(email)
+    UserRepo->>DB: SELECT * FROM users WHERE email = $1
+    DB-->>UserRepo: Return user record with password_hash
+    UserRepo-->>AuthSvc: User Entity
+    AuthSvc->>AuthSvc: bcrypt.compare(password, password_hash)
+    alt Credentials Valid
+        AuthSvc->>AuthSvc: jwt.sign({userId, email, role}, JWT_SECRET)
+        AuthSvc-->>AuthCtrl: {token, user}
+        AuthCtrl-->>Client: 200 OK {success: true, data: {token, user}}
+        Client->>Client: Store token in memory / AuthContext
+        Client-->>Student: Redirect to Dashboard
+    else Invalid Credentials
+        AuthSvc-->>AuthCtrl: Throw UnauthorizedError("Invalid email or password")
+        AuthCtrl-->>Client: 401 Unauthorized {success: false, error: {...}}
+        Client-->>Student: Display error banner
+    end
+
+%% =============================================================================
+%% 2. Study Group Join Request & Approval Workflow
+%% =============================================================================
+sequenceDiagram
+    autonumber
+    actor Applicant as Applicant Student
+    actor Owner as Group Owner
+    participant Client as React Client
+    participant API as Express Router
+    participant GroupCtrl as GroupController
+    participant GroupSvc as GroupService
+    participant GroupRepo as GroupRepository
+    participant DB as PostgreSQL DB
+
+    Applicant->>Client: Clicks "Request to Join" + enters note
+    Client->>API: POST /api/v1/groups/:id/join {requestNote} [Bearer Token]
+    API->>API: authMiddleware verifies JWT token
+    API->>GroupCtrl: handleJoinRequest(req, res)
+    GroupCtrl->>GroupSvc: requestMembership(groupId, userId, note)
+    GroupSvc->>GroupRepo: getGroupCapacity(groupId)
+    GroupRepo->>DB: SELECT current_count, max_members FROM ...
+    DB-->>GroupRepo: Count details
+    alt Group has capacity
+        GroupSvc->>GroupRepo: createMembership(groupId, userId, 'member', 'pending', note)
+        GroupRepo->>DB: INSERT INTO group_memberships ...
+        DB-->>GroupRepo: Created membership record
+        GroupSvc-->>GroupCtrl: Membership details
+        GroupCtrl-->>Client: 201 Created {success: true, message: "Request submitted"}
+        Client-->>Applicant: Display "Request Pending" badge
+    else Group is full
+        GroupSvc-->>GroupCtrl: Throw ConflictError("Group has reached maximum capacity")
+        GroupCtrl-->>Client: 409 Conflict {success: false, error: {...}}
+        Client-->>Applicant: Display "Group Full" alert
+    end
+
+    Note over Owner, Client: Owner reviews pending requests
+    Owner->>Client: Clicks "Approve Member"
+    Client->>API: PATCH /api/v1/groups/:id/members/:userId {status: 'accepted'}
+    API->>GroupCtrl: handleMembershipStatus(req, res)
+    GroupCtrl->>GroupSvc: approveMembership(groupId, userId, ownerId)
+    GroupSvc->>GroupRepo: updateStatus(groupId, userId, 'accepted')
+    GroupRepo->>DB: UPDATE group_memberships SET status = 'accepted', joined_at = NOW() ...
+    DB-->>GroupRepo: Success
+    GroupCtrl-->>Client: 200 OK {success: true, message: "Member approved"}
+    Client-->>Owner: Member added to active roster

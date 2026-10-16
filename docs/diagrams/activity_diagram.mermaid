@@ -1,0 +1,24 @@
+%% Activity Diagram: Study Session Scheduling with Overlap Detection
+flowchart TD
+    Start([Group Owner Initiates Schedule Session]) --> InputDetails[Input Session Title, Date, Start Time, End Time, Venue/Link]
+    InputDetails --> ValidateFormat{Are required fields present and formatted?}
+    
+    ValidateFormat -- No --> DisplayFormatError[Display Input Validation Error]
+    DisplayFormatError --> InputDetails
+
+    ValidateFormat -- Yes --> CheckTimeBoundary{Is End Time > Start Time AND Start Time > Current Time?}
+    CheckTimeBoundary -- No --> DisplayTimeError[Display Time Boundary Error Alert]
+    DisplayTimeError --> InputDetails
+
+    CheckTimeBoundary -- Yes --> QueryMemberSchedules[Query Existing Scheduled Sessions for Enrolled Group Members]
+    QueryMemberSchedules --> ConflictCheck{Do any enrolled members have overlapping sessions?}
+
+    ConflictCheck -- Yes --> WarnOwner[Display Overlapping Member Warning Dialog]
+    WarnOwner --> ProceedDecision{Does Owner want to proceed or reschedule?}
+    ProceedDecision -- Reschedule --> InputDetails
+    ProceedDecision -- Proceed Regardless --> SaveSession[Insert Record into study_sessions]
+
+    ConflictCheck -- No --> SaveSession
+    SaveSession --> InitAttendees[Initialize session_attendees for All Enrolled Members with status='tentative']
+    InitAttendees --> EmitSuccess[Return 201 Created & Render on Study Calendar]
+    EmitSuccess --> EndNode([Session Successfully Scheduled])
