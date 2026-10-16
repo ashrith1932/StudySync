@@ -23,7 +23,7 @@ import authRoutes           from './routes/auth.routes.js';
 import groupRoutes          from './routes/group.routes.js';
 import userRoutes           from './routes/user.routes.js';
 import recommendationRoutes from './routes/recommendation.routes.js';
-import { sendError } from './utils/response.js';
+import { sendSuccess, sendError } from './utils/response.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get(`${API_PREFIX}/health`, (_req, res) => {
-  res.json({ success: true, message: 'StudySync API is running.', timestamp: new Date().toISOString() });
+  return sendSuccess(res, { status: 'healthy', timestamp: new Date().toISOString() }, 'StudySync API is running.');
 });
 
 // ── API Routes ────────────────────────────────────────────────────────────────
