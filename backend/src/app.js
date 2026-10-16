@@ -19,8 +19,10 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 
-import authRoutes  from './routes/auth.routes.js';
-import groupRoutes from './routes/group.routes.js';
+import authRoutes           from './routes/auth.routes.js';
+import groupRoutes          from './routes/group.routes.js';
+import userRoutes           from './routes/user.routes.js';
+import recommendationRoutes from './routes/recommendation.routes.js';
 import { sendError } from './utils/response.js';
 
 const app = express();
@@ -39,8 +41,10 @@ app.get(`${API_PREFIX}/health`, (_req, res) => {
 });
 
 // ── API Routes ────────────────────────────────────────────────────────────────
-app.use(`${API_PREFIX}/auth`,     authRoutes);
-app.use(`${API_PREFIX}/groups`,   groupRoutes);
+app.use(`${API_PREFIX}/auth`,            authRoutes);
+app.use(`${API_PREFIX}/users`,           userRoutes);
+app.use(`${API_PREFIX}/groups`,          groupRoutes);
+app.use(`${API_PREFIX}/recommendations`, recommendationRoutes);
 app.use(`${API_PREFIX}/subjects`, (req, res, next) => {
   // Delegate subject listing from /api/v1/subjects to group router handler
   req.url = '/subjects';
